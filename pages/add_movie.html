@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Add movie</title>
+
+        <link rel="stylesheet" type="text/css" href="http://localhost/cinema/css/bootstrap.min.css">
+        <link href="http://localhost/cinema/css/home.css" rel="stylesheet">
+        <link href="http://localhost/cinema/css/css/fontawesome-all.css" rel="stylesheet">
+    </head>
+
+    <body>
+      <div id="app">
+        <header>
+            <nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
+                <div class='collapse navbar-collapse' id='navMenu'>
+                    <div class='navbar-nav'>
+                        <a class='nav-item nav-link' href='home_logged.html'>Home</a>
+                        <a class='nav-item nav-link active' href='add_movie.html'>Add movie<span class='sr-only'>(current)</span></a>
+                        <a class='nav-item nav-link' href='modify_movie.html'>Modify movie</a>
+                        <a class='nav-item nav-link' href='search_movie.html'>Search movie</a>
+
+					</div>
+					<a href="./logout" class='btn btn-dark' role='button'><i class='fas fa-sign-out-alt'></i> Log out</a>
+				</div>
+			</nav>
+        </header>
+
+        <div class="container">
+			<form id="add_movie_form" method="post" action="#">
+				<div class="row">
+					<div class="col-sm">
+
+							<div class='form-group row' id='responsiveRow'>
+								<label for='inputTitle'  class='col-sm-2 col-form-label'>Title</label>
+								<input id='inputTitle' v-model='title' name='inputTitle' type='text' class='form-control' required value=''>
+							</div>
+							<div class='form-group row' id='responsiveRow'>
+								<label for='inputHour' class='col-sm-2 col-form-label'>Duration</label>
+								<div>
+									<label for='inputHour' class='sr-only'>Hours</label>
+									<input id='inputHour' v-model='durationH' name='inputHour' type='text' class='form-control cardInput' maxlength='2' required value=''>
+								</div>
+								<div class='time'>h</div>
+								<div>
+									<label for='inputMinute' class='sr-only'>Minutes</label>
+									<input id='inputMinute' v-model='durationM' name='inputMinute' type='text' class='form-control cardInput' maxlength='2' required value=''>
+								</div>
+								<div class='time'>min</div>
+
+							</div>
+							<div class='form-group row' id='responsiveRow'>
+								<label for='inputAge' class='col-sm-2 col-form-label'>Minimum age</label>
+								<input id='inputAge' v-model='minimumAge' name='inputAge' type='text' class='form-control cardInput' maxlength='2' pattern='\d{2}' value=''>
+							</div>
+					</div>
+				</div>
+        <div class="row">
+					<div class="col-sm">
+						<div class='search-bar'>
+							<form action='#' method='post'>
+								<div class='input-group'>
+									<input name='keyword' type='text' id='inputSearch' class='form-control' v-model='searchNameActor' v-on:keyup="searchActor" placeholder='Enter actor name'>
+									<div class='input-group-append'>
+										<button v-on:click="createActor()" class='btn btn-primary' type='button' id='btnSearch'><i class='fas fa-search'></i> Add</button>
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<!-- RESULTS OF SEARCH -->
+						<div class='list-group'>
+							<a v-for="(e, i) in listSearchActor" href='#!' class="list-group-item" role='button' v-on:click='addActor(i)'>{{ e.name }}</a>
+						</div>
+					</div>
+					<div class="col-sm">
+						<div class="panel-heading">List actors</div>
+						<div class="panel-body">
+							<ul class="list-group">
+								<div class="row" v-for="(e, i) in listActor">
+									<div class="col-lg-6" >
+										<div class="input-group" >
+											<span class="input-group-text" id='field'>{{ e.name }}</span>
+											<span class="input-group-btn">
+												<a href='#!' class="list-group-item" id='remove' role='button' v-on:click="removeActor(i)"><i class="fas fa-user-times"></i></a>
+											</span>
+										</div>
+									</div>
+								</div>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+
+
+
+        <div class="row">
+          <div class="col-sm">
+            <div class='search-bar'>
+              <form action='#' method='post'>
+                <div class='input-group'>
+                  <input name='keyword' type='text' id='inputSearch' class='form-control' v-model='searchNameDirector' v-on:keyup="searchDirector()" placeholder='Enter Director name'>
+                  <div class='input-group-append'>
+                    <button v-on:click="createDirector()" class='btn btn-primary' type='button' id='btnSearch'><i class='fas fa-search'></i> Add</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- RESULTS OF SEARCH -->
+            <div class='list-group'>
+              <a v-for="(e, i) in listSearchDirector" href='#!' class="list-group-item" role='button' v-on:click='addDirector(i)'>{{ e.name }}</a>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="panel-heading">List Director</div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <div class="row" v-for="(e, i) in listDirector">
+                  <div class="col-lg-6" >
+                    <div class="input-group" >
+                      <span class="input-group-text" id='field'>{{ e.name }}</span>
+                      <span class="input-group-btn">
+                        <a href='#!' class="list-group-item" id='remove' role='button' v-on:click="removeDirector(i)"><i class="fas fa-user-times"></i></a>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-sm">
+            <div class='search-bar'>
+              <form action='#' method='post'>
+                <div class='input-group'>
+                  <input name='keyword' type='text' id='inputSearch' class='form-control' v-model='searchNameLanguage' v-on:keyup="searchLanguage()" placeholder='Enter language'>
+                  <div class='input-group-append'>
+                    <button v-on:click="createLanguage()" class='btn btn-primary' type='button' id='btnSearch'><i class='fas fa-search'></i> Add</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- RESULTS OF SEARCH -->
+            <div class='list-group'>
+              <a v-for="(e, i) in listSearchLanguage" href='#!' class="list-group-item" role='button' v-on:click='addLanguage(i)'>{{ e.name }}</a>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="panel-heading">List Language</div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <div class="row" v-for="(e, i) in listLanguage">
+                  <div class="col-lg-6" >
+                    <div class="input-group" >
+                      <span class="input-group-text" id='field'>{{ e.name }}</span>
+                      <span class="input-group-btn">
+                        <a href='#!' class="list-group-item" id='remove' role='button' v-on:click="removeLanguage(i)"><i class="fas fa-user-times"></i></a>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="col-sm">
+            <div class='search-bar'>
+              <form action='#' method='post'>
+                <div class='input-group'>
+                  <input name='keyword' type='text' id='inputSearch' class='form-control' v-model='searchNameCity' v-on:keyup="searchCity()" placeholder='Enter City'>
+                  <div class='input-group-append'>
+                    <button v-on:click="createCity()" class='btn btn-primary' type='button' id='btnSearch'><i class='fas fa-search'></i> Add</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- RESULTS OF SEARCH -->
+            <div class='list-group'>
+              <a v-for="(e, i) in listSearchCity" href='#!' class="list-group-item" role='button' v-on:click='addCity(i)'>{{ e.name }}</a>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="panel-heading">List City</div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <div class="row" v-for="(e, i) in listCity">
+                  <div class="col-lg-6" >
+                    <div class="input-group" >
+                      <span class="input-group-text" id='field'>{{ e.name }}</span>
+                      <span class="input-group-btn">
+                        <a href='#!' class="list-group-item" id='remove' role='button' v-on:click="removeCity(i)"><i class="fas fa-user-times"></i></a>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <h2 class="panel-heading row">List City</h2><br>
+          <div class="row">
+            <label for="lundi, ">lundi, </label><input name="days" v-model="days" id="lundi, " type="checkbox" value="lundi, " />
+            <label for="mardi, ">mardi, </label><input name="days" v-model="days" id="mardi, " type="checkbox" value="mardi, " />
+            <label for="mercredi, ">mercredi, </label><input name="days" v-model="days" id="mercredi, " type="checkbox" value="mercredi, " />
+            <label for="jeudi, ">jeudi, </label><input name="days" v-model="days" id="jeudi, " type="checkbox" value="jeudi, " />
+            <label for="vendredi, ">vendredi, </label><input name="days" v-model="days" id="vendredi, " type="checkbox" value="vendredi, " />
+            <label for="samedi, ">samedi, </label><input name="days" v-model="days" id="samedi, " type="checkbox" value="samedi, " />
+            <label for="dimanche, ">dimanche, </label><input name="days" v-model="days" id="dimanche, " type="checkbox" value="dimanche, " />
+
+          </div>
+        </div>
+				<div class='form-group row' id='btn_form'>
+					<div class='col-sm-10'>
+						<button type='submit' v-on:click='addMovie' class='btn btn-primary'>Add Movie</button>
+					</div>
+				</div>
+			</form>
+		</div>
+  </div>
+
+        <script src="http://localhost/cinema/js/jquery.js"></script>
+        <script src="http://localhost/cinema/js/bootstrap.min.js"></script>
+
+        <script src="http://localhost/cinema/js/vue.js"></script>
+        <script src="http://localhost/cinema/js/axios.js"></script>
+        <script src="http://localhost/cinema/js/add_movie.js"></script>
+    </body>
+</html>

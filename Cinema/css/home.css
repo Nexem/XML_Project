@@ -1,0 +1,338 @@
+:root {
+    --snow:     #F8F9FA; /* white */
+    --stormy:   #494E6B; /* blue-pastel */
+    --sunrise:  #880022; /* red */
+    --sunset:   #985E6D; /* red-pastel */
+    --evening:  #110000; /* black */
+    --sun:      #FFC900; /* yellow */
+}
+
+body {
+	padding-top: 70px;
+    color: var(--snow);
+	font-family:Forte;
+	background-image:url('../pics/theater.jpg');
+}
+
+.container {
+	margin-top:2em;
+	padding:2em;
+	background-color: var(--evening);
+	border-radius:2em;
+}
+
+.display-4 {
+	margin-top:1em;
+}
+
+.navbar-custom {
+	background-color: var(--evening);
+	font-size:1.5em;
+}
+
+.nav-item {
+	margin-right:1em;
+}
+
+.modal-content {
+    overflow-y: hidden;
+}
+
+.modal-title {
+	color:var(--evening)!important;
+}
+
+p {
+	text-align: justify;
+}
+
+/*.form-control:focus, .custom-select:focus {
+    border-color: var(--stormy);
+    box-shadow: 0 0 5px rgba(73, 78, 107, 0.8);
+}*/
+
+.btn-primary, .btn-primary:focus, .badge-primary {
+    background-color: var(--sunrise);
+    border-color: var(--sunset);
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary.disabled, .btn-primary:disabled {
+    background-color: var(--sunset);
+    border-color: var(--sunset);
+}
+
+.btn-warning, .btn-warning:focus {
+    color: var(--stormy);
+    border-color: var(--stormy);
+    background-color: var(--sun);
+}
+
+.btn-warning:hover, .btn-warning:active {
+    border-color: var(--sun) !important;
+    background-color: var(--stormy) !important;
+    color: var(--sun) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.btn-warning:focus, .btn-primary:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.btn-light {
+    border-color: var(--stormy);
+}
+
+.btn-dark {
+    background-color: var(--snow);
+    border-color: var(--snow);
+    color: var(--evening);
+}
+
+.btn-dark:hover {
+    background-color: var(--sunset);
+    border-color: var(--sunset);
+    color: var(--snow);
+}
+
+.list-group-item {
+    background-color: var(--snow);
+	color: var(--evening);
+}
+
+.list-group-item:hover {
+    background-color: var(--sunset);
+	color: var(--evening);
+}
+
+.list-group-item:focus {
+	background-color: var(--sunrise);
+	color: var(--snow);
+}
+
+.btn-group input[name='inputOtherAmount'] {
+    max-width: 5em;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.form-login .checkbox {
+    font-weight: 400;
+}
+.form-login .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-login .form-control:focus {
+    z-index: 2;
+}
+.form-login input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-login input[type="email"] {
+    margin-bottom: -1px;
+    border-radius: 0;
+}
+.form-login input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-signup .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signup .form-control:focus {
+    z-index: 2;
+}
+.form-signup input[type="text"] {
+    margin-bottom: -1px;
+    border-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signup input[type="password"] {
+    margin-bottom: -1px;
+    border-radius: 0;
+}
+
+.form-signup input[type="email"] {
+    margin-bottom: 10px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.radio-inline {
+    margin-top:5px;
+    padding-right:2em;
+}
+
+
+.time {
+	padding-top:0.4em;
+	margin-left:0.5em;
+	margin-right:0.5em;
+}
+
+.col-form-label {
+	font-size: 1.5em;	
+}
+
+.form-group input[type="text"] {
+    width:3em;
+}
+
+.form-group input[name="inputTitle"] {
+    width:14em;
+}
+
+#btn_form {
+		margin-top:2em;
+}
+
+.radio {
+	padding-left:1em;
+	padding-top:1em;
+}
+
+.form-group input[name="inputAge"] {
+    margin-left:2em;
+	margin-top:0.4em;
+}
+
+.nav-item[aria-selected='false'] {
+	color: var(--snow);
+}
+
+.input-group input[id='inputSearch'] {
+		margin-bottom:1em;
+}
+
+.btn[id='btnSearch'] {
+		margin-bottom:1em;
+}
+
+#remove {
+    border-radius:0px 3px 3px 0px;
+	width:2.5em;
+	padding-left:0.6em;
+}
+
+#field {
+	width:12em;
+	border-radius:3px 0px 0px 3px;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        max-width: none;
+    }
+}
+
+@media (max-width: 1084px) {
+    .container {
+        max-width: none;
+    }
+	
+	#field {
+		width:10em;
+		border-radius:3px 0px 0px 3px;
+	}
+}
+
+@media (max-width: 990px) {
+    .container {
+        max-width: none;
+    }
+	
+	#field {
+		width:20em;
+		border-radius:3px 0px 0px 3px;
+	}
+}
+
+
+@media (max-width: 840px) {
+    .btn-group, .btn-primary:not(.search-bar btn-group) {
+        margin-bottom:0.3em;
+    }
+	
+	#field {
+		width:12em;
+		border-radius:3px 0px 0px 3px;
+	}
+}
+
+@media (max-width: 652px) {
+    .form-group textarea {
+        width:24em;
+    }
+	
+	#field {
+		width:12em;
+		border-radius:3px 0px 0px 3px;
+	}
+}
+
+@media (max-width: 576px) {
+    /* reduce size of month to only see digits */
+    .form-group select[id="selectMonthExpiry"] {
+        width:4em;
+    }
+	
+	#field {
+		width:20em;
+		border-radius:3px 0px 0px 3px;
+	}
+}
+
+@media (max-width: 464px) {
+	
+	#field {
+		width:16em;
+		border-radius:3px 0px 0px 3px;
+	}
+}
+
+@media (max-width: 380px) {
+
+    .form-group input[type="text"] {
+        margin-right:0em;
+    }
+
+    .form-group input[name="inputNoCard1"], .form-group input[name="inputNoCard2"], .form-group input[name="inputNoCard3"], .form-group input[name="inputNoCard4"] {
+        margin-left:0px;
+    }
+
+    .form-group textarea, 
+    .form-group input[name="inputIBAN"], 
+    .form-group input[name="inputBIC"], 
+    .form-group input[name="inputEmail"] {
+        width:14em;
+    }
+
+    .fa-edit {
+        width:2px;
+    }
+	
+	#field {
+		width:11.2em;
+		border-radius:3px 0px 0px 3px;
+	}
+
+}
+
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #ffffff;
+}

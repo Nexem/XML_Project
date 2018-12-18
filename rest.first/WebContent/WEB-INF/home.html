@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Home</title>
+
+        <link rel="stylesheet" type="text/css" href="http://localhost/cinema/css/bootstrap.min.css">
+        <link href="http://localhost/cinema/css/home.css" rel="stylesheet">
+        <link href="http://localhost/cinema/css/css/fontawesome-all.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+
+<div id="app">
+			<div class='modal fade login-modal-sm' tabindex='-1' role='dialog' aria-labelledby='loginModalLabel' aria-hidden='true'>
+		        <div class='modal-dialog modal-sm'>
+		            <div class='modal-content'>
+		                <div class='modal-header'>
+		                    <h5 class='modal-title'>Log in</h5>
+		                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+		                        <span aria-hidden='true'>&times;</span>
+		                     </button>
+		                </div>
+
+		                <div class='modal-body'>
+		                    <form class='form-login' action='session.php' method='post'>
+		                        <label for='inputEmail' class='sr-only'>Email address</label>
+		                        <input name='inputEmail' v-model='pseudo' type='email' class='form-control' placeholder='Email address' required>
+
+
+		                        <label for='inputPassword' class='sr-only'>Password</label>
+		                        <input name='inputPassword' v-model='password' type='password' class='form-control' placeholder='Password' required>
+
+		                        <div class='modal-footer'>
+		                            <button type='button' v-on:click="login()" class='btn btn-success'><i class='fas fa-sign-in-alt'></i> Log in</button>
+		                            <button type='button' class='btn btn-primary' data-dismiss='modal' data-toggle='modal' data-target='.signup-modal-sm'><i class='fas fa-user-plus'></i> Sign up</button>
+		                        </div>
+		                    </form>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+
+		    <div class='modal fade signup-modal-sm' tabindex='-1' role='dialog' aria-labelledby='signupModalLabel' aria-hidden='true'>
+		        <div class='modal-dialog modal-sm'>
+		            <div class='modal-content'>
+
+		                <div class='modal-header'>
+		                    <h5 class='modal-title'>Sign up</h5>
+		                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+		                        <span aria-hidden='true'>&times;</span>
+		                     </button>
+		                </div>
+
+		                <div class='modal-body'>
+		                    <form class='form-signup' action='#' method='post'>
+
+                            <label for='inputEmail' class='sr-only'>Email address</label>
+                            <input name='inputEmail' v-model='pseudo' type='email' id='inputEmail' class='form-control' placeholder='Email address' required>
+
+		                        <label for='inputPassword1' class='sr-only'>Enter password</label>
+		                        <input name='inputPassword1'  v-model='password' type='password' id='inputPassword1' class='form-control' placeholder='Enter password' required>
+
+		                        <label for='inputPassword2' class='sr-only'>Confirm password</label>
+		                        <input name='inputPassword2'  v-model='password2' type='password' id='inputPassword2' class='form-control' placeholder='Confirm password'required>
+
+
+
+		                        <div class='modal-footer'>
+		                            <button type='button' v-on:click='register' class='btn btn-success'><i class='fas fa-user-plus'></i> Sign up</button>
+		                        </div>
+		                    </form>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+        </header>
+
+        <div class="container container-img">
+                <h1 class="display-4">Welcome to Cinema !</h1>
+                <p class="lead">
+                    All movies you're looking for are there !
+                </p>
+
+                <blockquote class="blockquote text-right">
+                  <p class="mb-0 text-right">“ Give them pleasure. The same pleasure they have when they wake up from a nightmare. ”</p>
+                  <footer class="blockquote-footer"><cite title="Source Title">Alfred Hitchcock</cite></footer>
+                </blockquote>
+				<button type='button' class='btn btn-light btn-lg' data-toggle='modal' data-target='.login-modal-sm'><i class='fas fa-sign-in-alt'></i> Log in</button>
+
+        </div>
+</div>
+
+        <script src="http://localhost/cinema/js/jquery.js"></script>
+        <script src="http://localhost/cinema/js/bootstrap.min.js"></script>
+
+        <script src="http://localhost/cinema/js/vue.js"></script>
+        <script src="http://localhost/cinema/js/axios.js"></script>
+        <script src="http://localhost/cinema/js/home.js"></script>
+    </body>
+</html>

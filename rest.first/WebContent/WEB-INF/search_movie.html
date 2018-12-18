@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+        <title>Search movie</title>
+
+        <link rel='stylesheet' type='text/css' href='http://localhost/cinema/css/bootstrap.min.css'>
+        <link href='http://localhost/cinema/css/home.css' rel='stylesheet'>
+        <link href='http://localhost/cinema/css/css/fontawesome-all.css' rel='stylesheet'>
+    </head>
+
+    <body>
+        <header>
+            <nav class='navbar navbar-expand-lg navbar-dark navbar-custom fixed-top'>
+                <div class='collapse navbar-collapse' id='navMenu'>
+                    <div class='navbar-nav'>
+                        <a class='nav-item nav-link' href='home_logged.html'>Home</a>
+                        <a class='nav-item nav-link' href='add_movie.html'>Add movie</a>
+                        <a class='nav-item nav-link' href='modify_movie.html'>Modify movie</a>
+                        <a class='nav-item nav-link active' href='search_movie.html'>Search movie<span class='sr-only'>(current)</span></a>
+
+					</div>
+					<a href='./logout' class='btn btn-dark' role='button'><i class='fas fa-sign-out-alt'></i> Log out</a>
+				</div>
+			</nav>
+        </header>
+
+        <div class='container' id="app">
+			<div class='search-bar'>
+                <form action='#' method='post'>
+                    <div class='input-group'>
+                        <input name='keyword' type='text' v-model="title" v-on:keyup="search()" id='inputSearch' class='form-control' placeholder='Search movie'>
+                        <select v-model="languageSelect"  v-on:change="search()">
+                          <option value="0">All languages </option>
+                          <option v-for="l in language" v-bind:value="l.id">{{ l.name }} </option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+			<div class='list-group'>
+        <div v-for="(e, i) in movie">
+  				<button type='button' class='list-group-item list-group-item-action'  data-toggle='collapse' v-bind:data-target="'#multiCollapseMovie' + i" aria-expanded='false' v-bind:aria-controls="'multiCollapseMovie' + i" >{{ e.title }}</button>
+  				<div class='collapse multi-collapse' v-bind:id="'multiCollapseMovie' + i" >
+  					<nav>
+  						<div class='nav nav-tabs' id='nav-tab1' role='tablist'>
+  							<a class='nav-item nav-link active' id='nav-movies-tab1' data-toggle='tab' href='#nav-movies1' role='tab' aria-controls='nav-movies1' aria-selected='true'>Info</a>
+                <a class='nav-item nav-link' id='nav-profile-tab1' data-toggle='tab' href='#nav-profile1' role='tab' aria-controls='nav-profile1' aria-selected='false'>Actors</a>
+                <a class='nav-item nav-link' id='nav-profile-tab2' data-toggle='tab' href='#nav-profile2' role='tab' aria-controls='nav-profile2' aria-selected='false'>Directors</a>
+                <a class='nav-item nav-link' id='nav-profile-tab3' data-toggle='tab' href='#nav-profile3' role='tab' aria-controls='nav-profile3' aria-selected='false'>Languages</a>
+                <a class='nav-item nav-link' id='nav-profile-tab4' data-toggle='tab' href='#nav-profile4' role='tab' aria-controls='nav-profile4' aria-selected='false'>City</a>
+  						</div>
+  					</nav>
+  					<div class='tab-content' id='nav-tabContent1'>
+  						<div class='tab-pane fade show active' id='nav-movies1' role='tabpanel' aria-labelledby='nav-movies-tab1'>
+  							<label>Title : </label> {{ e.title }}
+              </br><label>Duration : </label> {{ e.duration }}
+            </br><label>Minimum age : </label> {{ e.min_age }}
+  						</div>
+              <div class='tab-pane fade' id='nav-profile1' role='tabpanel' aria-labelledby='nav-profile-tab1'>
+  							<div v-for="a in e.actor" class='name_actor'>{{ a.name }}</div>
+  						</div>
+              <div class='tab-pane fade' id='nav-profile2' role='tabpanel' aria-labelledby='nav-profile-tab2'>
+  							<div v-for="a in e.director" class='name_actor'>{{ a.name }}</div>
+  						</div>
+              <div class='tab-pane fade' id='nav-profile3' role='tabpanel' aria-labelledby='nav-profile-tab3'>
+                <div v-for="a in e.language" class='name_actor'>{{ a.name }}</div>
+              </div>
+              <div class='tab-pane fade' id='nav-profile4' role='tabpanel' aria-labelledby='nav-profile-tab4'>
+                <div v-for="a in e.city" class='name_actor'>{{ a.name }}</div>
+              </div>
+
+  					</div>
+  				</div>
+        </div>
+
+			</div>
+        </div>
+
+        <script src='http://localhost/cinema/js/jquery.js'></script>
+        <script src='http://localhost/cinema/js/bootstrap.min.js'></script>
+
+        <script src="http://localhost/cinema/js/vue.js"></script>
+        <script src="http://localhost/cinema/js/axios.js"></script>
+        <script src="http://localhost/cinema/js/search_movie.js"></script>
+    </body>
+</html>

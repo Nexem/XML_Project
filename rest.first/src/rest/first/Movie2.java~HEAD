@@ -1,0 +1,65 @@
+package rest.first;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONObject;
+
+
+@Path("/movie/name")
+public class Movie {
+
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public JSONArray getmovie(@QueryParam("name") String film) {
+	  ResultSet rs = null;
+	  JSONArray jarray = new JSONArray();
+	  convertor conv = new convertor();
+	  int id;
+	  try{
+		  Connection con = DriverManager.getConnection("jdbc:mysql://localhost:8080/xml_project", "root", "");
+	
+	      String query = "select * from movie WHERE title = '"+ film +"';";
+	      
+	      PreparedStatement st = con.prepareStatement(query);
+	      rs = st.executeQuery();
+	     
+	      id = rs.getInt("id");
+	      
+	      jarray = conv.convertToJSON(rs);
+	      
+	      st = con.prepareStatement("select * from actor_movie where id_movie = '"+id+"';");
+	      rs = st.executeQuery();
+	      JSONObject o = new JSONObject();
+	      o.put("actors", conv.convertToJSON(rs));
+	      jarray.put(o);
+	      
+	      st = con.prepareStatement("select language from language_movie where id_movie = '"+id+"';");
+	      rs = st.executeQuery();
+	      o.put("langue", conv.convertToJSON(rs));
+	      jarray.put(o);
+	      
+	      st = con.prepareStatement("select * from director_movie where id_movie = '"+id+"';");
+	      rs = st.executeQuery();
+	      o.put("directors", conv.convertToJSON(rs));
+	      jarray.put(o);
+	      
+	  }
+	  
+	  catch(Exception e){
+		  System.out.println(e.getMessage());
+	  }
+    return jarray;
+ 
+  }
+
+} 
